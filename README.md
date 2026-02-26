@@ -1,209 +1,182 @@
-Urban Risk Detection – Training-Free Vision Systems
+Abstract
 
-This repository presents two complementary training-free approaches for detecting risk-relevant anomalies in urban environments using vision-language reasoning.
+Urban safety monitoring requires robust detection of rare, unexpected, and context-dependent risk events in road environments. Traditional supervised approaches rely on large labeled datasets of accident scenarios, which are costly to collect and inherently incomplete.
 
-The project compares:
+This repository presents two complementary training-free vision-language systems for detecting risk-relevant anomalies in urban road scenes:
 
-Zero-Shot Vision-LLM system
+Zero-Shot Vision-LLM Reasoning System
 
-Few-Shot modular vision-language pipeline
+Few-Shot Modular Vision-Semantic Deviation Pipeline
 
-Both systems operate at inference time without task-specific training.
+Both systems operate entirely at inference time without task-specific fine-tuning.
+The work explores whether structured semantic reasoning and self-supervised visual deviation modeling can enable reliable anomaly detection without supervised training.
 
-Overview
+Contributions
 
-Urban safety monitoring often relies on supervised models trained on labeled accident data. However, many real-world risks are rare, unexpected, or context-dependent.
+Training-Free Risk Detection Framework for urban road scenes.
 
-This project explores training-free perception using two paradigms:
-
-Zero-Shot System
-
-A Vision-LLM (GPT-based) that directly interprets road scenes and produces:
+Structured Vision-LLM Reasoning Pipeline producing:
 
 Scene understanding
 
-Object detection (semantic)
+Object-level semantic analysis
 
-Anomaly identification
+Risk scoring (1–10 severity scale)
 
-Risk scoring
+Spatial localization (bounding boxes + polygons)
 
-Spatial localization (boxes + polygons)
+Natural-language explanation
 
-Natural-language reasoning
+Modular DINO-CLIP-GPT Pipeline for visual deviation–based anomaly detection.
 
-Few-Shot System
+Unified Evaluation Protocol across inference-only configurations.
 
-A modular pipeline combining:
-
-DINO → visual deviation detection
-
-CLIP → semantic alignment
-
-GPT → post-hoc explanation
-
-Repository Structure
-Zero-Shot Pipeline
-
-Location:
-UrbanRiskGPT/src/gpt_only/
-
-Main scripts:
-
-run_gpt_batch.py
-Runs GPT analysis on a dataset (multiple images)
-
-evaluation
-Location:
-UrbanRiskGPT/src/gpt_only/
-
-evaluate_zero_shot.py
-Computes evaluation metrics (Accuracy, F1, ROC-AUC, PR-AUC)
-
-score_reasoning.py
-computes the scores of the reasoning 
+Comparison between reasoning-based and deviation-based paradigms.
 
 
-Few-Shot Pipeline (Station 3 Based)
+System Overview
+1️⃣ Zero-Shot Vision-LLM System
 
-Location:
-UrbanZS/
+A structured GPT-based reasoning engine processes each image using a controlled prompt format.
 
-Main scripts:
+For each scene, the system produces:
 
-compute_statistics.py
-Builds statistical calibration for DINO scores using normal images
-
-anomaly_pipeline.py
-Runs the system on a single image (demo mode)
-
-evaluation
-
-evaluate_model.py
-Runs the system on full dataset and computes metrics
-
-analysis_arch3_dino_clip_semantic.py
-arch3_dino_clip_semantic_analysis.py
-computes the metrices of the semantic part
-
-
-Zero-Shot System – How It Works
-
-The system sends each image to GPT-5.1 with a structured prompt.
-
-For each image, the model returns:
-
-Scene type (road / sidewalk)
+Scene type (road / sidewalk / urban)
 
 Scene summary
 
-Relevant objects
+Detected objects
 
-Detected anomalies
-
-Risk score (1-10)
+Anomaly identification
 
 Risk targets
+
+Risk severity score (1–10)
 
 Bounding boxes
 
 Polygon segmentation
 
-Reasoning
+Explicit reasoning
 
-This creates a fully structured semantic interpretation without training.
+The system performs fully structured semantic interpretation without training.
 
-Zero-Shot – How to Run
+2️⃣ Few-Shot Modular Pipeline
 
-Step 1 — Prepare a manifest file:
+A deviation-driven anomaly detector composed of:
+
+DINO (Self-Supervised Vision Transformer)
+→ Patch-level structural deviation detection
+
+CLIP (Vision-Language Alignment)
+→ Semantic anomaly validation
+
+GPT (Post-Hoc Explanation)
+→ Risk explanation generation
+
+Final anomaly score combines:
+
+DINO deviation score
+
+CLIP semantic confidence
+
+
+
+UrbanRiskGPT/
+│
+├── src/
+│   ├── gpt_only/
+│   │   ├── run_gpt_batch.py
+│   │   ├── evaluate_zero_shot.py
+│   │   └── score_reasoning.py
+│   
+│   
+│
+UrbanZS/
+│   ├── compute_statistics.py
+│   ├── anomaly_pipeline.py
+│   ├── evaluate_model.py
+│   ├── analysis_arch3_dino_clip_semantic.py
+│   
+
+
+Zero-Shot Pipeline
+How It Works
+
+Each image is processed by GPT-5.1 using a structured prompt template.
+Output is returned as a structured JSON object.
+
+How To Run
+Step 1 — Prepare Manifest File
 
 Each line in manifest.jsonl:
 
 {
-"sample_id": "img_001",
-"frame_path": "images/img_001.jpg",
-"label": 1
+  "sample_id": "img_001",
+  "frame_path": "images/img_001.jpg",
+  "label": 1
 }
 
-Step 2 — Run inference:
 
-python run_gpt_batch.py
---manifest path/to/manifest.jsonl
---output path/to/results.jsonl
---model gpt-5.1
+Step 2 — Run Inference
 
-Step 3 — Evaluate:
+python run_gpt_batch.py \
+  --manifest path/to/manifest.jsonl \
+  --output path/to/results.jsonl \
+  --model gpt-5.1
 
-python metrics_zero_shot.py
 
-This produces:
+  Step 3 — Evaluate
+
+  python evaluate_zero_shot.py
+
+
+  Outputs:
 
 Accuracy
 
 Precision / Recall / F1
 
-ROC curve
+ROC Curve
 
-PR curve
+PR Curve
 
-Confusion matrix
+Confusion Matrix
 
-Few-Shot System – How It Works
+Few-Shot Modular Pipeline
+Step 1 — Build DINO Calibration Statistics
 
-This pipeline detects anomalies using visual deviation rather than language reasoning alone.
-
-Station 3 Components
-
-DINO:
-Detects structural irregularities via patch similarity
-
-CLIP:
-Matches image to semantic labels
-
-GPT:
-Explains detected anomaly
-
-The final anomaly score is computed from:
-
-DINO deviation
-
-CLIP semantic confidence
-
-Few-Shot – How to Run
-Step 1 — Build DINO statistics (important)
-
-Place normal images in:
+Place normal images inside:
 
 normal_images/
-
-Then run:
-
-python compute_stats.py
+Run:
+python compute_statistics.py
 
 This generates:
+
 statistics.json
 
-Used to normalize anomaly scores.
+Used to normalize DINO deviation scores.
 
-Step 2 — Run on a single image (demo)
+Step 2 — Run Single Image (Demo Mode)
 
-Place image in:
+Place test image inside:
 
 input_images/
 
-Then run:
+Run:
 
-python analyze_image_station3.py
+python anomaly_pipeline.py
 
-This produces:
+Produces:
 
-JSON result
+Structured JSON output
 
-On-screen visualization
+Visualization overlay
 
 GPT explanation
 
-Step 3 — Full evaluation
+Step 3 — Full Dataset Evaluation
 
 Prepare:
 
@@ -211,11 +184,11 @@ evaluation/
 ├── normal/
 ├── anomaly/
 
-Then run:
+Run:
 
-python evaluation.py
+python evaluate_model.py
 
-This produces:
+Outputs:
 
 metrics.json
 
@@ -227,13 +200,40 @@ confusion_matrix.png
 
 results.csv
 
+⚙ Installation
+git clone <repo_url>
+cd <repo_name>
+pip install -r requirements.txt
+
+Required libraries include:
+
+PyTorch
+
+OpenAI API
+
+OpenCV
+
+NumPy
+
+scikit-learn
+
+matplotlib
+
+📌 Citation
+
 If you use this repository, please cite:
 
-Training-Free Recognition of Risk-Relevant Situations in Urban Road Scenes Using Vision-Language Models
-Halifa et al.
-
-Author
+@article{halifa2025urbanrisk,
+  title={Training-Free Recognition of Risk-Relevant Situations in Urban Road Scenes Using Vision-Language Models},
+  author={Halifa, Linoy and Ella, Ezra and Aperstein, Yehudit},
+  year={2025}
+}
+👩‍🔬 Authors
 
 Linoy Halifa
-Ezra Ella
 M.Sc. Intelligent Systems
+
+Ezra Ella
+
+Supervisor:
+Dr. Yehudit Aperstein
