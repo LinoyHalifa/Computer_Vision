@@ -106,11 +106,121 @@ Each line in `manifest.jsonl`:
 
 ---
 
-#### Step 1 — Prepare Manifest File
+Step 2 — Run Inference
+python run_gpt_batch.py \
+  --manifest path/to/manifest.jsonl \
+  --output path/to/results.jsonl \
+  --model gpt-5.1
+Step 3 — Evaluate
+python evaluate_zero_shot.py
+Outputs
 
+Accuracy
+
+Precision / Recall / F1
+
+ROC Curve
+
+PR Curve
+
+Confusion Matrix
+
+Few-Shot Modular Pipeline
+Step 1 — Build DINO Calibration Statistics
+
+Place normal images inside:
+
+normal_images/
+
+Run:
+
+python compute_statistics.py
+
+This generates:
+
+statistics.json
+Step 2 — Run Single Image (Demo Mode)
+
+Place test image inside:
+
+input_images/
+
+Run:
+
+python anomaly_pipeline.py
+
+Produces:
+
+Structured JSON output
+
+Visualization overlay
+
+GPT explanation
+
+Step 3 — Full Dataset Evaluation
+
+Prepare:
+
+evaluation/
+├── normal/
+├── anomaly/
+
+Run:
+
+python evaluate_model.py
+
+Outputs:
+
+metrics.json
+
+roc_curve.png
+
+pr_curve.png
+
+confusion_matrix.png
+
+results.csv
+
+Installation
+git clone <repo_url>
+cd <repo_name>
+pip install -r requirements.txt
+
+Required libraries:
+
+PyTorch
+
+OpenAI API
+
+OpenCV
+
+NumPy
+
+scikit-learn
+
+matplotlib
+
+Citation
+@article{halifa2025urbanrisk,
+  title={Training-Free Recognition of Risk-Relevant Situations in Urban Road Scenes Using Vision-Language Models},
+  author={Halifa, Linoy and Ella, Ezra and Aperstein, Yehudit},
+  year={2025}
+}
+Authors
+
+Linoy Halifa
+M.Sc. Intelligent Systems
+
+Ezra Ella
+
+Supervisor:
+Dr. Yehudit Aperstein
 
 
 python run_gpt_batch.py \
   --manifest path/to/manifest.jsonl \
   --output path/to/results.jsonl \
   --model gpt-5.1
+
+
+
