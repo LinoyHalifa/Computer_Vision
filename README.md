@@ -87,10 +87,6 @@ UrbanZS/
 │ ├── evaluate_model.py
 │ ├── analysis_arch3_dino_clip_semantic.py
 
-
-
----
-
 ### Zero-Shot Pipeline
 
 #### Step 1 — Prepare Manifest File
@@ -103,124 +99,143 @@ Each line in `manifest.jsonl`:
   "frame_path": "images/img_001.jpg",
   "label": 1
 }
+```
 
----
+#### Step 2 — Run Inference
 
-Step 2 — Run Inference
+```bash
 python run_gpt_batch.py \
   --manifest path/to/manifest.jsonl \
   --output path/to/results.jsonl \
   --model gpt-5.1
-Step 3 — Evaluate
+```
+
+#### Step 3 — Evaluate
+
+```bash
 python evaluate_zero_shot.py
-Outputs
+```
 
-Accuracy
+#### Outputs
 
-Precision / Recall / F1
+- Accuracy
+- Precision / Recall / F1
+- ROC Curve
+- PR Curve
+- Confusion Matrix
 
-ROC Curve
+---
 
-PR Curve
+### Few-Shot Modular Pipeline
 
-Confusion Matrix
-
-Few-Shot Modular Pipeline
-Step 1 — Build DINO Calibration Statistics
+#### Step 1 — Build DINO Calibration Statistics
 
 Place normal images inside:
 
+```text
 normal_images/
+```
 
 Run:
 
+```bash
 python compute_statistics.py
+```
 
 This generates:
 
+```text
 statistics.json
-Step 2 — Run Single Image (Demo Mode)
+```
+
+---
+
+#### Step 2 — Run Single Image (Demo Mode)
 
 Place test image inside:
 
+```text
 input_images/
+```
 
 Run:
 
+```bash
 python anomaly_pipeline.py
+```
 
 Produces:
 
-Structured JSON output
+- Structured JSON output
+- Visualization overlay
+- GPT explanation
 
-Visualization overlay
+---
 
-GPT explanation
-
-Step 3 — Full Dataset Evaluation
+#### Step 3 — Full Dataset Evaluation
 
 Prepare:
 
+```text
 evaluation/
 ├── normal/
 ├── anomaly/
+```
 
 Run:
 
+```bash
 python evaluate_model.py
+```
 
 Outputs:
 
-metrics.json
+- metrics.json
+- roc_curve.png
+- pr_curve.png
+- confusion_matrix.png
+- results.csv
 
-roc_curve.png
+---
 
-pr_curve.png
+### Installation
 
-confusion_matrix.png
-
-results.csv
-
-Installation
+```bash
 git clone <repo_url>
 cd <repo_name>
 pip install -r requirements.txt
+```
 
 Required libraries:
 
-PyTorch
+- PyTorch
+- OpenAI API
+- OpenCV
+- NumPy
+- scikit-learn
+- matplotlib
 
-OpenAI API
+---
 
-OpenCV
+### Citation
 
-NumPy
-
-scikit-learn
-
-matplotlib
-
-Citation
+```bibtex
 @article{halifa2025urbanrisk,
   title={Training-Free Recognition of Risk-Relevant Situations in Urban Road Scenes Using Vision-Language Models},
   author={Halifa, Linoy and Ella, Ezra and Aperstein, Yehudit},
   year={2025}
 }
-Authors
+```
 
-Linoy Halifa
-M.Sc. Intelligent Systems
+---
 
-Ezra Ella
+### Authors
 
-Supervisor:
+**Linoy Halifa**  
+M.Sc. Intelligent Systems  
+
+**Ezra Ella**
+
+**Supervisor:**  
 Dr. Yehudit Aperstein
-
-
-python run_gpt_batch.py \
-  --manifest path/to/manifest.jsonl \
-  --output path/to/results.jsonl \
-  --model gpt-5.1
-
-
 
