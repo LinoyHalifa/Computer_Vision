@@ -91,11 +91,11 @@ UrbanZS/
 
 ---
 
-## Zero-Shot Pipeline
+### Zero-Shot Pipeline
 
-### Step 1 — Prepare Manifest File
+#### Step 1 — Prepare Manifest File
 
-### Each line in `manifest.jsonl`:
+Each line in `manifest.jsonl`:
 
 ```json
 {
@@ -105,21 +105,14 @@ UrbanZS/
 }
 
 
-### Step 2 — Run Inference
-
-
+Step 2 — Run Inference
 python run_gpt_batch.py \
   --manifest path/to/manifest.jsonl \
   --output path/to/results.jsonl \
   --model gpt-5.1
-
-
-### Step 3 — Evaluate
-
+Step 3 — Evaluate
 python evaluate_zero_shot.py
-
-
-### Outputs:
+Outputs
 
 Accuracy
 
@@ -136,9 +129,7 @@ Step 1 — Build DINO Calibration Statistics
 
 Place normal images inside:
 
-
 normal_images/
-
 
 Run:
 
@@ -147,7 +138,7 @@ python compute_statistics.py
 This generates:
 
 statistics.json
-### Step 2 — Run Single Image (Demo Mode)
+Step 2 — Run Single Image (Demo Mode)
 
 Place test image inside:
 
@@ -165,7 +156,7 @@ Visualization overlay
 
 GPT explanation
 
-### Step 3 — Full Dataset Evaluation
+Step 3 — Full Dataset Evaluation
 
 Prepare:
 
