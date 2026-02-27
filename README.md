@@ -229,10 +229,10 @@ Required libraries:
 
 ---
 
-**Supervisor:**  
+### Supervisor:
 Dr. Yehudit Aperstein
 
-### Authors:
+**Authors:**  
 **Linoy Halifa**  
 **Ezra Ella**
 
