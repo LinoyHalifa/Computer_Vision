@@ -104,7 +104,11 @@ Each line in `manifest.jsonl`:
   "label": 1
 }
 
-####  Step 2 — Run Inference
+---
+
+#### Step 1 — Prepare Manifest File
+
+
 
 python run_gpt_batch.py \
   --manifest path/to/manifest.jsonl \
