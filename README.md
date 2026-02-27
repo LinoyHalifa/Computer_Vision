@@ -95,7 +95,7 @@ UrbanZS/
 
 ### Step 1 — Prepare Manifest File
 
-Each line in `manifest.jsonl`:
+### Each line in `manifest.jsonl`:
 
 ```json
 {
@@ -147,7 +147,7 @@ python compute_statistics.py
 This generates:
 
 statistics.json
-Step 2 — Run Single Image (Demo Mode)
+### Step 2 — Run Single Image (Demo Mode)
 
 Place test image inside:
 
@@ -165,7 +165,7 @@ Visualization overlay
 
 GPT explanation
 
-Step 3 — Full Dataset Evaluation
+### Step 3 — Full Dataset Evaluation
 
 Prepare:
 
