@@ -233,10 +233,10 @@ Required libraries:
 Dr. Yehudit Aperstein
 
 **Authors:**  
-**Linoy Halifa**  
-**Ezra Ella**
+Linoy Halifa  
+Ezra Ella
 
-M.Sc. Intelligent Systems  
+**M.Sc. Intelligent Systems, Afeka College,Tel Aviv, Israel**  
 
 
 
