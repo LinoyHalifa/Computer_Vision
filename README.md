@@ -237,7 +237,7 @@ Dr. Yehudit Aperstein
 Linoy Halifa  
 Ezra Ella
 
-**M.Sc. Intelligent Systems, Afeka College,Tel Aviv, Israel**  
+**M.Sc. Intelligent Systems, Afeka College of Engineering Tel Aviv, Israel**  
 
 
 
