@@ -1,6 +1,6 @@
 🚦 UrbanRiskGPT
 Training-Free Risk-Relevant Anomaly Detection in Urban Road Scenes
-________________________________________
+
 Abstract
 Urban safety monitoring requires robust detection of rare, unexpected, and context-dependent risk events in road environments. Traditional supervised approaches rely on large labeled datasets of accident scenarios, which are costly to collect and inherently incomplete.
 This repository presents two complementary training-free vision-language systems for detecting risk-relevant anomalies in urban road scenes:
@@ -8,7 +8,7 @@ This repository presents two complementary training-free vision-language systems
 •	Few-Shot Modular Vision-Semantic Deviation Pipeline
 Both systems operate entirely at inference time without task-specific fine-tuning.
 The work explores whether structured semantic reasoning and self-supervised visual deviation modeling can enable reliable anomaly detection without supervised training.
-________________________________________
+
 Contributions
 •	Training-free risk detection framework for urban road scenes
 •	Structured Vision-LLM reasoning pipeline producing:
@@ -20,7 +20,7 @@ o	Natural-language explanation
 •	Modular DINO–CLIP–GPT pipeline for visual deviation–based anomaly detection
 •	Unified evaluation protocol across inference-only configurations
 •	Comparison between reasoning-based and deviation-based paradigms
-________________________________________
+
 System Overview
 1️⃣ Zero-Shot Vision-LLM System
 A structured GPT-based reasoning engine processes each image using a controlled prompt format.
@@ -35,7 +35,7 @@ For each scene, the system produces:
 •	Polygon segmentation
 •	Explicit reasoning
 The system performs fully structured semantic interpretation without training.
-________________________________________
+
 2️⃣ Few-Shot Modular Pipeline
 A deviation-driven anomaly detector composed of:
 •	DINO – Patch-level structural deviation detection
@@ -44,7 +44,7 @@ A deviation-driven anomaly detector composed of:
 Final anomaly score combines:
 •	DINO deviation score
 •	CLIP semantic confidence
-________________________________________
+
 Repository Structure
 UrbanRiskGPT/
 │
@@ -59,7 +59,7 @@ UrbanZS/
 │   ├── anomaly_pipeline.py
 │   ├── evaluate_model.py
 │   ├── analysis_arch3_dino_clip_semantic.py
-________________________________________
+
 Zero-Shot Pipeline
 Step 1 — Prepare Manifest File
 Each line in manifest.jsonl:
@@ -81,7 +81,7 @@ Outputs:
 •	ROC Curve
 •	PR Curve
 •	Confusion Matrix
-________________________________________
+
 Few-Shot Modular Pipeline
 Step 1 — Build DINO Calibration Statistics
 Place normal images inside:
@@ -90,7 +90,7 @@ Run:
 python compute_statistics.py
 This generates:
 statistics.json
-________________________________________
+
 Step 2 — Run Single Image (Demo Mode)
 Place test image inside:
 input_images/
@@ -100,7 +100,7 @@ Produces:
 •	Structured JSON output
 •	Visualization overlay
 •	GPT explanation
-________________________________________
+
 Step 3 — Full Dataset Evaluation
 Prepare:
 evaluation/
@@ -114,7 +114,7 @@ Outputs:
 •	pr_curve.png
 •	confusion_matrix.png
 •	results.csv
-________________________________________
+
 Installation
 git clone <repo_url>
 cd <repo_name>
@@ -126,14 +126,14 @@ Required libraries:
 •	NumPy
 •	scikit-learn
 •	matplotlib
-________________________________________
+
 Citation
 @article{halifa2025urbanrisk,
   title={Training-Free Recognition of Risk-Relevant Situations in Urban Road Scenes Using Vision-Language Models},
   author={Halifa, Linoy and Ella, Ezra and Aperstein, Yehudit},
   year={2025}
 }
-________________________________________
+
 Supervisor:
 Dr. Yehudit Aperstein
 Authors:
