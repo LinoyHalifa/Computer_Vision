@@ -72,20 +72,21 @@ Final anomaly score combines:
 
 ## Repository Structure
 
-
+```text
 UrbanRiskGPT/
 │
 ├── src/
-│ ├── gpt_only/
-│ │ ├── run_gpt_batch.py
-│ │ ├── evaluate_zero_shot.py
-│ │ └── score_reasoning.py
+│   ├── gpt_only/
+│   │   ├── run_gpt_batch.py
+│   │   ├── evaluate_zero_shot.py
+│   │   └── score_reasoning.py
 │
 UrbanZS/
-│ ├── compute_statistics.py
-│ ├── anomaly_pipeline.py
-│ ├── evaluate_model.py
-│ ├── analysis_arch3_dino_clip_semantic.py
+│   ├── compute_statistics.py
+│   ├── anomaly_pipeline.py
+│   ├── evaluate_model.py
+│   └── analysis_arch3_dino_clip_semantic.py
+```
 
 ### Zero-Shot Pipeline
 
