@@ -1,6 +1,6 @@
 🚦 UrbanRiskGPT
 Training-Free Risk-Relevant Anomaly Detection in Urban Road Scenes
-📖 Abstract
+Abstract
 
 Urban safety monitoring requires robust detection of rare, unexpected, and context-dependent risk events in road environments. Traditional supervised approaches rely on large labeled datasets of accident scenarios, which are costly to collect and inherently incomplete.
 
@@ -11,13 +11,13 @@ Zero-Shot Vision-LLM Reasoning System
 Few-Shot Modular Vision-Semantic Deviation Pipeline
 
 Both systems operate entirely at inference time without task-specific fine-tuning.
-This work explores whether structured semantic reasoning and self-supervised visual deviation modeling can enable reliable anomaly detection without supervised training.
+The work explores whether structured semantic reasoning and self-supervised visual deviation modeling can enable reliable anomaly detection without supervised training.
 
-🚀 Contributions
+Contributions
 
-✅ Training-Free Risk Detection Framework for urban road scenes
+Training-free risk detection framework for urban road scenes
 
-🧠 Structured Vision-LLM Reasoning Pipeline producing:
+Structured Vision-LLM reasoning pipeline producing:
 
 Scene understanding
 
@@ -29,13 +29,13 @@ Spatial localization (bounding boxes + polygons)
 
 Natural-language explanation
 
-🔍 Modular DINO–CLIP–GPT Pipeline for deviation-based anomaly detection
+Modular DINO–CLIP–GPT pipeline for visual deviation–based anomaly detection
 
-📊 Unified Evaluation Protocol across inference-only configurations
+Unified evaluation protocol across inference-only configurations
 
-⚖️ Comparison between reasoning-based and deviation-based paradigms
+Comparison between reasoning-based and deviation-based paradigms
 
-🏗 System Overview
+System Overview
 1️⃣ Zero-Shot Vision-LLM System
 
 A structured GPT-based reasoning engine processes each image using a controlled prompt format.
@@ -58,25 +58,19 @@ Bounding boxes
 
 Polygon segmentation
 
-Explicit reasoning trace
+Explicit reasoning
 
-The system performs fully structured semantic interpretation without any training.
+The system performs fully structured semantic interpretation without training.
 
 2️⃣ Few-Shot Modular Pipeline
 
 A deviation-driven anomaly detector composed of:
 
-🔹 DINO (Self-Supervised Vision Transformer)
+DINO – Patch-level structural deviation detection
 
-→ Patch-level structural deviation detection
+CLIP – Semantic anomaly validation
 
-🔹 CLIP (Vision-Language Alignment)
-
-→ Semantic anomaly validation
-
-🔹 GPT (Post-Hoc Explanation)
-
-→ Risk explanation generation
+GPT – Risk explanation generation
 
 Final anomaly score combines:
 
@@ -84,7 +78,7 @@ DINO deviation score
 
 CLIP semantic confidence
 
-📂 Repository Structure
+Repository Structure
 UrbanRiskGPT/
 │
 ├── src/
@@ -98,13 +92,7 @@ UrbanZS/
 │   ├── anomaly_pipeline.py
 │   ├── evaluate_model.py
 │   ├── analysis_arch3_dino_clip_semantic.py
-🔎 Zero-Shot Pipeline
-🧠 How It Works
-
-Each image is processed by GPT-5.1 using a structured prompt template.
-The output is returned as a structured JSON object.
-
-▶ How To Run
+Zero-Shot Pipeline
 Step 1 — Prepare Manifest File
 
 Each line in manifest.jsonl:
@@ -121,7 +109,8 @@ python run_gpt_batch.py \
   --model gpt-5.1
 Step 3 — Evaluate
 python evaluate_zero_shot.py
-📊 Outputs:
+
+Outputs:
 
 Accuracy
 
@@ -133,7 +122,7 @@ PR Curve
 
 Confusion Matrix
 
-🔬 Few-Shot Modular Pipeline
+Few-Shot Modular Pipeline
 Step 1 — Build DINO Calibration Statistics
 
 Place normal images inside:
@@ -147,9 +136,6 @@ python compute_statistics.py
 This generates:
 
 statistics.json
-
-Used to normalize DINO deviation scores.
-
 Step 2 — Run Single Image (Demo Mode)
 
 Place test image inside:
@@ -179,7 +165,8 @@ evaluation/
 Run:
 
 python evaluate_model.py
-📊 Outputs:
+
+Outputs:
 
 metrics.json
 
@@ -191,11 +178,12 @@ confusion_matrix.png
 
 results.csv
 
-⚙ Installation
+Installation
 git clone <repo_url>
 cd <repo_name>
 pip install -r requirements.txt
-Required Libraries
+
+Required libraries:
 
 PyTorch
 
@@ -209,23 +197,18 @@ scikit-learn
 
 matplotlib
 
-📌 Citation
-
-If you use this repository, please cite:
-
+Citation
 @article{halifa2025urbanrisk,
   title={Training-Free Recognition of Risk-Relevant Situations in Urban Road Scenes Using Vision-Language Models},
   author={Halifa, Linoy and Ella, Ezra and Aperstein, Yehudit},
   year={2025}
 }
+Authors
 
+Linoy Halifa
+M.Sc. Intelligent Systems
+
+Ezra Ella
 
 Supervisor:
 Dr. Yehudit Aperstein
-
-👩‍🔬 Authors
-Linoy Halifa
-Ezra Ella
-
-M.Sc. Intelligent Systems
-
