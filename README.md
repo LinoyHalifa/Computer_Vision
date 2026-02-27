@@ -103,3 +103,8 @@ Each line in `manifest.jsonl`:
   "frame_path": "images/img_001.jpg",
   "label": 1
 }
+
+python run_gpt_batch.py \
+  --manifest path/to/manifest.jsonl \
+  --output path/to/results.jsonl \
+  --model gpt-5.1
