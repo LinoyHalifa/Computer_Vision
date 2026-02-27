@@ -1,4 +1,6 @@
-Abstract
+🚦 UrbanRiskGPT
+Training-Free Risk-Relevant Anomaly Detection in Urban Road Scenes
+📖 Abstract
 
 Urban safety monitoring requires robust detection of rare, unexpected, and context-dependent risk events in road environments. Traditional supervised approaches rely on large labeled datasets of accident scenarios, which are costly to collect and inherently incomplete.
 
@@ -9,13 +11,13 @@ Zero-Shot Vision-LLM Reasoning System
 Few-Shot Modular Vision-Semantic Deviation Pipeline
 
 Both systems operate entirely at inference time without task-specific fine-tuning.
-The work explores whether structured semantic reasoning and self-supervised visual deviation modeling can enable reliable anomaly detection without supervised training.
+This work explores whether structured semantic reasoning and self-supervised visual deviation modeling can enable reliable anomaly detection without supervised training.
 
-Contributions
+🚀 Contributions
 
-Training-Free Risk Detection Framework for urban road scenes.
+✅ Training-Free Risk Detection Framework for urban road scenes
 
-Structured Vision-LLM Reasoning Pipeline producing:
+🧠 Structured Vision-LLM Reasoning Pipeline producing:
 
 Scene understanding
 
@@ -27,14 +29,13 @@ Spatial localization (bounding boxes + polygons)
 
 Natural-language explanation
 
-Modular DINO-CLIP-GPT Pipeline for visual deviation–based anomaly detection.
+🔍 Modular DINO–CLIP–GPT Pipeline for deviation-based anomaly detection
 
-Unified Evaluation Protocol across inference-only configurations.
+📊 Unified Evaluation Protocol across inference-only configurations
 
-Comparison between reasoning-based and deviation-based paradigms.
+⚖️ Comparison between reasoning-based and deviation-based paradigms
 
-
-System Overview
+🏗 System Overview
 1️⃣ Zero-Shot Vision-LLM System
 
 A structured GPT-based reasoning engine processes each image using a controlled prompt format.
@@ -57,21 +58,24 @@ Bounding boxes
 
 Polygon segmentation
 
-Explicit reasoning
+Explicit reasoning trace
 
-The system performs fully structured semantic interpretation without training.
+The system performs fully structured semantic interpretation without any training.
 
 2️⃣ Few-Shot Modular Pipeline
 
 A deviation-driven anomaly detector composed of:
 
-DINO (Self-Supervised Vision Transformer)
+🔹 DINO (Self-Supervised Vision Transformer)
+
 → Patch-level structural deviation detection
 
-CLIP (Vision-Language Alignment)
+🔹 CLIP (Vision-Language Alignment)
+
 → Semantic anomaly validation
 
-GPT (Post-Hoc Explanation)
+🔹 GPT (Post-Hoc Explanation)
+
 → Risk explanation generation
 
 Final anomaly score combines:
@@ -80,8 +84,7 @@ DINO deviation score
 
 CLIP semantic confidence
 
-
-
+📂 Repository Structure
 UrbanRiskGPT/
 │
 ├── src/
@@ -89,24 +92,19 @@ UrbanRiskGPT/
 │   │   ├── run_gpt_batch.py
 │   │   ├── evaluate_zero_shot.py
 │   │   └── score_reasoning.py
-│   
-│   
 │
 UrbanZS/
 │   ├── compute_statistics.py
 │   ├── anomaly_pipeline.py
 │   ├── evaluate_model.py
 │   ├── analysis_arch3_dino_clip_semantic.py
-│   
-
-
-Zero-Shot Pipeline
-How It Works
+🔎 Zero-Shot Pipeline
+🧠 How It Works
 
 Each image is processed by GPT-5.1 using a structured prompt template.
-Output is returned as a structured JSON object.
+The output is returned as a structured JSON object.
 
-How To Run
+▶ How To Run
 Step 1 — Prepare Manifest File
 
 Each line in manifest.jsonl:
@@ -116,22 +114,14 @@ Each line in manifest.jsonl:
   "frame_path": "images/img_001.jpg",
   "label": 1
 }
-
-
 Step 2 — Run Inference
-
 python run_gpt_batch.py \
   --manifest path/to/manifest.jsonl \
   --output path/to/results.jsonl \
   --model gpt-5.1
-
-
-  Step 3 — Evaluate
-
-  python evaluate_zero_shot.py
-
-
-  Outputs:
+Step 3 — Evaluate
+python evaluate_zero_shot.py
+📊 Outputs:
 
 Accuracy
 
@@ -143,13 +133,15 @@ PR Curve
 
 Confusion Matrix
 
-Few-Shot Modular Pipeline
+🔬 Few-Shot Modular Pipeline
 Step 1 — Build DINO Calibration Statistics
 
 Place normal images inside:
 
 normal_images/
+
 Run:
+
 python compute_statistics.py
 
 This generates:
@@ -187,8 +179,7 @@ evaluation/
 Run:
 
 python evaluate_model.py
-
-Outputs:
+📊 Outputs:
 
 metrics.json
 
@@ -204,8 +195,7 @@ results.csv
 git clone <repo_url>
 cd <repo_name>
 pip install -r requirements.txt
-
-Required libraries include:
+Required Libraries
 
 PyTorch
 
@@ -228,12 +218,14 @@ If you use this repository, please cite:
   author={Halifa, Linoy and Ella, Ezra and Aperstein, Yehudit},
   year={2025}
 }
-👩‍🔬 Authors
 
-Linoy Halifa
-M.Sc. Intelligent Systems
-
-Ezra Ella
 
 Supervisor:
 Dr. Yehudit Aperstein
+
+👩‍🔬 Authors
+Linoy Halifa
+Ezra Ella
+
+M.Sc. Intelligent Systems
+
