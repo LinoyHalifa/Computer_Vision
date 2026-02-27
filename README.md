@@ -229,13 +229,13 @@ Required libraries:
 
 ---
 
-### Authors
-
-**Linoy Halifa**  
-M.Sc. Intelligent Systems  
-
-**Ezra Ella**
-
 **Supervisor:**  
 Dr. Yehudit Aperstein
+
+### Authors:
+**Linoy Halifa**  
+**Ezra Ella**
+M.Sc. Intelligent Systems  
+
+
 
